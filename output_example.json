@@ -1,0 +1,290 @@
+[
+  {
+    "eventID": "15274721362C1_6_0",
+    "competitionType": "Coppa d’Argentina",
+    "competitionName": "Rosario Central vs Boca Juniors",
+    "currentResult": "0 : 1",
+    "teams": [
+      {
+        "name": "Rosario Central",
+        "goal": 0,
+        "penalty": 0,
+        "attack": 65,
+        "dangerousAttack": 35,
+        "possession": 52,
+        "onTarget": 3,
+        "offTarget": 3,
+        "substitution": 0,
+        "corner": 3,
+        "yellowCard": 4,
+        "redCard": 0
+      },
+      {
+        "name": "Boca Juniors",
+        "goal": 1,
+        "penalty": 1,
+        "attack": 57,
+        "dangerousAttack": 31,
+        "possession": 48,
+        "onTarget": 4,
+        "offTarget": 3,
+        "substitution": 0,
+        "corner": 3,
+        "yellowCard": 2,
+        "redCard": 0
+      }
+    ]
+  },
+  {
+    "eventID": "15274721532C1_6_0",
+    "competitionType": "Argentina - Torneo A",
+    "competitionName": "San Martin de Tucuman vs Gimnasia y Esgrima",
+    "currentResult": "0 : 1",
+    "teams": [
+      {
+        "name": "San Martin de Tucuman",
+        "goal": 0,
+        "penalty": 0,
+        "attack": 31,
+        "dangerousAttack": 22,
+        "possession": 61,
+        "onTarget": 0,
+        "offTarget": 4,
+        "substitution": 0,
+        "corner": 5,
+        "yellowCard": 0,
+        "redCard": 0
+      },
+      {
+        "name": "Gimnasia y Esgrima",
+        "goal": 1,
+        "penalty": 0,
+        "attack": 26,
+        "dangerousAttack": 18,
+        "possession": 39,
+        "onTarget": 1,
+        "offTarget": 0,
+        "substitution": 0,
+        "corner": 2,
+        "yellowCard": 0,
+        "redCard": 0
+      }
+    ]
+  },
+  {
+    "eventID": "15274721972C1_6_0",
+    "competitionType": "Coppa del Cile",
+    "competitionName": "Colo Colo vs Union Espanola",
+    "currentResult": "2 : 1",
+    "teams": [
+      {
+        "name": "Colo Colo",
+        "goal": 2,
+        "penalty": 0,
+        "attack": 42,
+        "dangerousAttack": 33,
+        "possession": 58,
+        "onTarget": 4,
+        "offTarget": 10,
+        "substitution": 0,
+        "corner": 3,
+        "yellowCard": 0,
+        "redCard": 1
+      },
+      {
+        "name": "Union Espanola",
+        "goal": 1,
+        "penalty": 0,
+        "attack": 52,
+        "dangerousAttack": 37,
+        "possession": 42,
+        "onTarget": 8,
+        "offTarget": 10,
+        "substitution": 0,
+        "corner": 5,
+        "yellowCard": 2,
+        "redCard": 0
+      }
+    ]
+  },
+  {
+    "eventID": "15274725732C1_6_0",
+    "competitionType": "Coppa di Panama",
+    "competitionName": "San Francisco FC vs Rio Abajo F.C.",
+    "currentResult": "3 : 1",
+    "teams": [
+      {
+        "name": "San Francisco FC",
+        "goal": 3,
+        "penalty": 0,
+        "attack": 60,
+        "dangerousAttack": 32,
+        "possession": 46,
+        "onTarget": 5,
+        "offTarget": 10,
+        "substitution": 0,
+        "corner": 4,
+        "yellowCard": 2,
+        "redCard": 0
+      },
+      {
+        "name": "Rio Abajo F.C.",
+        "goal": 1,
+        "penalty": 0,
+        "attack": 67,
+        "dangerousAttack": 30,
+        "possession": 54,
+        "onTarget": 3,
+        "offTarget": 2,
+        "substitution": 0,
+        "corner": 0,
+        "yellowCard": 2,
+        "redCard": 0
+      }
+    ]
+  },
+  {
+    "eventID": "15274725962C1_6_0",
+    "competitionType": "Perù - Primera Division",
+    "competitionName": "Alianza Lima vs FBC Melgar",
+    "currentResult": "0 : 0",
+    "teams": [
+      {
+        "name": "Alianza Lima",
+        "goal": 0,
+        "penalty": 0,
+        "attack": 28,
+        "dangerousAttack": 19,
+        "possession": 48,
+        "onTarget": 2,
+        "offTarget": 3,
+        "substitution": 0,
+        "corner": 2,
+        "yellowCard": 3,
+        "redCard": 0
+      },
+      {
+        "name": "FBC Melgar",
+        "goal": 0,
+        "penalty": 0,
+        "attack": 31,
+        "dangerousAttack": 18,
+        "possession": 52,
+        "onTarget": 0,
+        "offTarget": 2,
+        "substitution": 0,
+        "corner": 2,
+        "yellowCard": 1,
+        "redCard": 0
+      }
+    ]
+  },
+  {
+    "eventID": "15274728242C1_6_0",
+    "competitionType": "Venezuela - Primera Division",
+    "competitionName": "Deportivo Tachira vs Estudiantes de Caracas",
+    "currentResult": "4 : 0",
+    "teams": [
+      {
+        "name": "Deportivo Tachira",
+        "goal": 4,
+        "penalty": 0,
+        "attack": 46,
+        "dangerousAttack": 35,
+        "possession": 54,
+        "onTarget": 9,
+        "offTarget": 6,
+        "substitution": 0,
+        "corner": 2,
+        "yellowCard": 0,
+        "redCard": 0
+      },
+      {
+        "name": "Estudiantes de Caracas",
+        "goal": 0,
+        "penalty": 0,
+        "attack": 42,
+        "dangerousAttack": 31,
+        "possession": 46,
+        "onTarget": 3,
+        "offTarget": 7,
+        "substitution": 0,
+        "corner": 4,
+        "yellowCard": 1,
+        "redCard": 0
+      }
+    ]
+  },
+  {
+    "eventID": "15274728352C1_6_0",
+    "competitionType": "Venezuela - Primera Division",
+    "competitionName": "Zamora vs Metropolitanos FC",
+    "currentResult": "2 : 0",
+    "teams": [
+      {
+        "name": "Zamora",
+        "goal": 2,
+        "penalty": 0,
+        "attack": 42,
+        "dangerousAttack": 29,
+        "possession": 62,
+        "onTarget": 9,
+        "offTarget": 1,
+        "substitution": 0,
+        "corner": 10,
+        "yellowCard": 4,
+        "redCard": 0
+      },
+      {
+        "name": "Metropolitanos FC",
+        "goal": 0,
+        "penalty": 0,
+        "attack": 37,
+        "dangerousAttack": 15,
+        "possession": 38,
+        "onTarget": 0,
+        "offTarget": 1,
+        "substitution": 0,
+        "corner": 2,
+        "yellowCard": 1,
+        "redCard": 0
+      }
+    ]
+  },
+  {
+    "eventID": "15274724652C1_6_0",
+    "competitionType": "Jamaica Premier League",
+    "competitionName": "Harbour View FC vs UWI",
+    "currentResult": "1 : 1",
+    "teams": [
+      {
+        "name": "Harbour View FC",
+        "goal": 1,
+        "penalty": 0,
+        "attack": 77,
+        "dangerousAttack": 49,
+        "possession": 54,
+        "onTarget": 3,
+        "offTarget": 6,
+        "substitution": 0,
+        "corner": 3,
+        "yellowCard": 0,
+        "redCard": 0
+      },
+      {
+        "name": "UWI",
+        "goal": 1,
+        "penalty": 0,
+        "attack": 62,
+        "dangerousAttack": 44,
+        "possession": 46,
+        "onTarget": 4,
+        "offTarget": 15,
+        "substitution": 0,
+        "corner": 4,
+        "yellowCard": 0,
+        "redCard": 0
+      }
+    ]
+  }
+]
