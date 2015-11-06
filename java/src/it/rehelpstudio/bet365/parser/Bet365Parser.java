@@ -49,7 +49,7 @@ public class Bet365Parser {
 
         System.out.println("Connected.");
 
-        ArrayList<Map<String, String>> matches = new ArrayList<>();
+        ArrayList<String> matches = new ArrayList<>();
         boolean success = false;
 
         for (String CHANNEL : CHANNELS) {
@@ -64,18 +64,25 @@ public class Bet365Parser {
         }
 
         if (success) {
+            int matchCount = matches.size();
+            System.out.println("Found " + matchCount + " matches.");
             System.out.println("Parsing data...");
+
             // Request full information for each event
-            for (Map<String, String> event : matches) {
-                String id = event.get("ID");
-                if (id.length() > 16) {
-                    try {
-                        System.out.println("Parse match id " + id);
-                        eventsList.add(getSoccerEventInformation(id));
-                    } catch (IOException e) {
-                        System.out.println("Error parsing match id " + id);
-                        System.out.println("debug > " + e.getMessage());
+            for (int i=0; i < matches.size(); i++) {
+                try {
+                    System.out.println("Parse " + (i+1) +" of " + matchCount + " [matchID: " + matches.get(i) + "]");
+                    Map<Object, Object> info;
+                    info = getSoccerEventInformation(matches.get(i));
+                    if (info == null) {
+                        System.out.println("Match is out of date.");
                     }
+                    else {
+                        eventsList.add(info);
+                    }
+                } catch (IOException e) {
+                    System.out.println("Error parsing match id " + matches.get(i));
+                    System.out.println("debug > " + e.getMessage());
                 }
             }
 
@@ -91,11 +98,11 @@ public class Bet365Parser {
     }
 
 
-    private ArrayList<Map<String, String>> getAvailableMatches(String channel) {
-        ArrayList<Map<String, String>> matches = new ArrayList<>();
+    private ArrayList<String> getAvailableMatches(String channel) {
+        ArrayList<String> matches = new ArrayList<>();
 
         try {
-            matches = parseData(channel);
+            matches = getEvents(channel);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -210,7 +217,7 @@ public class Bet365Parser {
         cookies = str.substring(1, str.length() - 1);
     }
 
-    private ArrayList<Map<String, String>> parseData(String channel) throws IOException {
+    private ArrayList<String> getEvents(String channel) throws IOException {
 
         // Get actual events list
         subscribe(channel);
@@ -232,7 +239,7 @@ public class Bet365Parser {
 
         if (params == null) return null;
 
-        ArrayList<Map<String, String>> events = new ArrayList<>();
+        ArrayList<String> events = new ArrayList<>();
 
         // skip the initial CL (soccer)
         for(int i = 1; i < gameData.length; i++) {
@@ -242,17 +249,9 @@ public class Bet365Parser {
                 continue;
 
             if(lineData.containsKey("EV")) {
-                events.add(lineData.get("EV"));
-            }
-            else if (lineData.containsKey("CT")) {
-                if(Objects.equals(lineData.get("CT").get("NA"), "Coupons")) {
-                    continue;
-                    //	break; // It adds some kind of coupon stuff... what
+                if (lineData.get("EV").get("ID").length() == 17) {
+                    events.add(lineData.get("EV").get("ID"));
                 }
-                events.add(lineData.get("CT"));
-            }
-            else if(lineData.containsKey("CL")) {
-                break; // This isn't soccer m8
             }
         }
 
@@ -343,8 +342,8 @@ public class Bet365Parser {
         result.add(new HashMap<>());
         int currentTeam;
         boolean firstItem = true;
-        String currentKey = "";
-        String competitionName = "";
+        String currentKey = null;
+        String competitionType = null;
 
 
         for (String anEventExpandedData : eventExpandedData) {
@@ -355,7 +354,7 @@ public class Bet365Parser {
 
             if (parsedLine.containsKey("EV")) { //Event
                 currentRoot = parsedLine.get("EV");
-                competitionName = currentRoot.get("CT");
+                competitionType = currentRoot.get("CT");
             }
             else if (parsedLine.containsKey("SC")) {
                 currentRoot = parsedLine.get("SC");
@@ -399,6 +398,8 @@ public class Bet365Parser {
 
         unsubscribe(id);
 
+        if (competitionType == null) return null;
+
         Team team1 = new Team(result.get(0).get("name"), result.get(0).get("IGoal"), result.get(0).get("IPenalty"),
                 result.get(0).get("S3"), result.get(0).get("S4"), result.get(0).get("S7"), result.get(0).get("S1"),
                 result.get(0).get("S2"), result.get(0).get("ISubstitution"), result.get(0).get("ICorner"),
@@ -409,7 +410,7 @@ public class Bet365Parser {
                 result.get(1).get("S2"), result.get(1).get("ISubstitution"), result.get(1).get("ICorner"),
                 result.get(1).get("IYellowCard"), result.get(1).get("IRedCard"));
 
-        Event event = new Event(id, competitionName, team1, team2);
+        Event event = new Event(id, competitionType, team1, team2);
 
         return event.toJSON();
     }
