@@ -30,6 +30,7 @@ public class Bet365Parser {
 
     private static final String RECORD_DELIM = "\\x01";
     private static final String FIELD_DELIM = "\\x02";
+    private static final String[] CHANNELS = {"OVInPlay_1_3", "OVInPlay_6_0"};
 
     private int serverNum;
 
@@ -47,20 +48,25 @@ public class Bet365Parser {
         }
 
         System.out.println("Connected.");
-        System.out.println("Parsing data...");
 
-        ArrayList<Map<String, String>> events = new ArrayList<>();
+        ArrayList<Map<String, String>> matches = new ArrayList<>();
+        boolean success = false;
 
-        try {
-            events = parseData();
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (String CHANNEL : CHANNELS) {
+            System.out.println("Trying to get events list from " + CHANNEL + " channel.");
+            matches = getAvailableMatches(CHANNEL);
+            if (matches != null) {
+                System.out.println("Success.");
+                success = true;
+                break;
+            }
+            System.out.println("Connection error... Trying next channel...");
         }
 
-        if (events != null) {
-
+        if (success) {
+            System.out.println("Parsing data...");
             // Request full information for each event
-            for (Map<String, String> event : events) {
+            for (Map<String, String> event : matches) {
                 String id = event.get("ID");
                 if (id.length() > 16) {
                     try {
@@ -72,11 +78,29 @@ public class Bet365Parser {
                     }
                 }
             }
+
+            System.out.println("Create JSON file...");
+            saveJSON("soccer_events");
+            System.out.println("All done :)");
         }
-        System.out.println("Create JSON file...");
-        saveJSON("soccer_events");
+        else {
+            System.out.println("Can't receive matches ids");
+        }
+
         done = true;
-        System.out.println("All done :)");
+    }
+
+
+    private ArrayList<Map<String, String>> getAvailableMatches(String channel) {
+        ArrayList<Map<String, String>> matches = new ArrayList<>();
+
+        try {
+            matches = parseData(channel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return matches;
     }
 
     private void setConnection() throws Exception {
@@ -186,10 +210,10 @@ public class Bet365Parser {
         cookies = str.substring(1, str.length() - 1);
     }
 
-    private ArrayList<Map<String, String>> parseData() throws IOException {
+    private ArrayList<Map<String, String>> parseData(String channel) throws IOException {
 
         // Get actual events list
-        subscribe("OVInPlay_6_0");
+        subscribe(channel);
         ArrayList<Header> headers = new ArrayList<>();
         headers.add(new BasicHeader("method", "1"));
 
@@ -232,7 +256,7 @@ public class Bet365Parser {
             }
         }
 
-        unsubscribe("OVInPlay_6_0");
+        unsubscribe(channel);
 
         return events;
     }
