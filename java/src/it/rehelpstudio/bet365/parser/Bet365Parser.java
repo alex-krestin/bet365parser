@@ -34,7 +34,7 @@ public class Bet365Parser {
 
     private int serverNum;
 
-    public void parseAll() {
+    public void parseAll() throws InterruptedException {
         try {
             System.out.println("Connecting to " + BET365_HOME);
             setConnection();
@@ -71,11 +71,12 @@ public class Bet365Parser {
             // Request full information for each event
             for (int i=0; i < matches.size(); i++) {
                 try {
+                    Thread.sleep(800); // sleep for 0.8 second
                     System.out.println("Parse " + (i+1) +" of " + matchCount + " [matchID: " + matches.get(i) + "]");
                     Map<Object, Object> info;
                     info = getSoccerEventInformation(matches.get(i));
                     if (info == null) {
-                        System.out.println("Match is out of date.");
+                        System.out.println("Match is finished.");
                     }
                     else {
                         eventsList.add(info);
@@ -241,12 +242,18 @@ public class Bet365Parser {
 
         ArrayList<String> events = new ArrayList<>();
 
-        // skip the initial CL (soccer)
+        // skip the initial CL (Soccer)
         for(int i = 1; i < gameData.length; i++) {
+
             Map<String, Map<String, String>> lineData = parameterizeLine(gameData[i]);
 
             if (lineData == null)
                 continue;
+
+            // stop if found new category line
+            if(lineData.containsKey("CL")) {
+                break;
+            }
 
             if(lineData.containsKey("EV")) {
                 if (lineData.get("EV").get("ID").length() == 17) {
